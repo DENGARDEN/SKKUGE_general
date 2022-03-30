@@ -127,3 +127,25 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+20.extendedFrags.fastq
+21.extendedFrags.fastq
+22.extendedFrags.fastq
+23.extendedFrags.fastq
+24.extendedFrags.fastq
+25.extendedFrags.fastq
+26.extendedFrags.fastq
+flash
+HKK_220314__20_1.fastq.gz
+HKK_220314__20_2.fastq.gz
+HKK_220314__21_1.fastq.gz
+HKK_220314__21_2.fastq.gz
+HKK_220314__22_1.fastq.gz
+HKK_220314__22_2.fastq.gz
+HKK_220314__23_1.fastq.gz
+HKK_220314__23_2.fastq.gz
+HKK_220314__24_1.fastq.gz
+HKK_220314__24_2.fastq.gz
+HKK_220314__25_1.fastq.gz
+HKK_220314__25_2.fastq.gz
+HKK_220314__26_1.fastq.gz
+HKK_220314__26_2.fastq.gz

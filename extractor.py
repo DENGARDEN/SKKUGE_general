@@ -1,14 +1,15 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 __author__ = 'forestkeep21@naver.com'
 
+import os
 import re
 import sys
-import os
 
 BASE_DIR = os.path.dirname(sys.executable)
 
-#for debug
+
+# for debug
 # BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -24,17 +25,17 @@ def count_line_in_file(file_name):
     return count
 
 
-def do(src_file_name, dest_file_name):
+def do(src_file_name, dest_file_name, cnt):
     # 프로그램 진행율을 계산하기 위해 파일의 라인수를 센다.
     src_line_cnt = count_line_in_file(src_file_name)
     if src_line_cnt == 0:
-        print ('File Not Found')
+        print('File Not Found')
         raise
     current_cnt = 0
     extracted_line_index = []
 
     # 결과가 저장될 폴더 지정
-    result_folder_name = os.path.join(BASE_DIR, 'results')
+    result_folder_name = os.path.join(BASE_DIR, f'results_{cnt}')
     # 추출할 시퀸스가 있는 파일을 읽어온다.
     data = [line.strip() for line in open(dest_file_name, 'r') if seq_validator(line)]
     # 바코드가 있는 파일을 읽어온다.
@@ -83,11 +84,11 @@ def do(src_file_name, dest_file_name):
             # 프로그램 진행율 계산 부분
             current_cnt += 1
             progress_percentage = (float(current_cnt) / src_line_cnt * 100)
-            print (u'{} %'.format(progress_percentage))
+            print(u'{} %'.format(progress_percentage))
 
     except Exception as e:
-        print (e)
-        print (u'Extraction Failure.')
+        print(e)
+        print(u'Extraction Failure.')
         raise
 
     try:
@@ -103,28 +104,29 @@ def do(src_file_name, dest_file_name):
                 # 총 결과 파일에 파일명 : 라인수 형식으로 쓴다.
                 f.write('{} : {}\n'.format(file_name, count))
     except Exception as e:
-        print (e)
-        print (u'Extraction has been done. But Making a result-info.txt is failed.')
+        print(e)
+        print(u'Extraction has been done. But Making a result-info.txt is failed.')
         raise
 
+
 if __name__ == "__main__":
-    print (u'Input barcode file name with extension: ')
+    print(u'Input barcode file name with extension: ')
     src_file_name = input()
     src_file_name = os.path.join(BASE_DIR, src_file_name)
 
     if not os.path.isfile(src_file_name):
-        print (u'File Not Found. Check it is in same folder')
+        print(u'File Not Found. Check it is in same folder')
         raise
 
-    print (u'Input sequence file name with extension: ')
+    print(u'Input sequence file name with extension: ')
     dest_file_name = input()
     dest_file_name = os.path.join(BASE_DIR, dest_file_name)
 
     if not os.path.isfile(dest_file_name):
-        print (u'File Not Found. Check it is in same folder')
+        print(u'File Not Found. Check it is in same folder')
         raise
 
-    do(src_file_name, dest_file_name)
+    do(src_file_name, dest_file_name, 0)
 
-    print (u'Well done. Press any key')
+    print(u'Well done. Press any key')
     input()

@@ -17,7 +17,7 @@ from extractor import do
 # elif platform == "win32":
 #     # Windows...
 
-EXTRACTOR_ONLY = True
+EXTRACTOR_ONLY = False
 
 NGS_file_info = pd.read_excel("NGS_input.xlsx", engine="openpyxl")
 leading_name = "HKK_220314"
@@ -53,10 +53,11 @@ if not EXTRACTOR_ONLY:
 # extract with barcodes
 # hyperparameter
 START = 20
-BASE_DIR = os.path.dirname(sys.executable)
+# BASE_DIR = os.path.dirname(sys.executable)
 
 for i in range(7):
-    src_file_name = os.path.join(BASE_DIR, f"{START + i}{combined_format}")
-    dest_file_name = os.path.join(BASE_DIR, f"{START + i}{combined_format}")
+    src_file_name = os.path.join(f"{START + i}{combined_format}")
+    dest_file_name = os.path.join(f"{START + i}{combined_format}")
     do(src_file_name, dest_file_name, START + i)
 # anaylze indel
+

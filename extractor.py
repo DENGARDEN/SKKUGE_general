@@ -6,11 +6,11 @@ import os
 import re
 import sys
 
-BASE_DIR = os.path.dirname(sys.executable)
+# BASE_DIR = os.path.dirname(sys.executable)
 
 
 # for debug
-# BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
 def seq_validator(data):
@@ -36,6 +36,7 @@ def do(src_file_name, dest_file_name, cnt):
 
     # 결과가 저장될 폴더 지정
     result_folder_name = os.path.join(BASE_DIR, f'results_{cnt}')
+    print(f"Extracted sequences will be saved in the directory {result_folder_name}")
     # 추출할 시퀸스가 있는 파일을 읽어온다.
     data = [line.strip() for line in open(dest_file_name, 'r') if seq_validator(line)]
     # 바코드가 있는 파일을 읽어온다.
@@ -59,6 +60,7 @@ def do(src_file_name, dest_file_name, cnt):
 
             used_data = []
             # 대상이 되는 시퀸스들을 하나하나 분석한다.
+            processing_cnt = 0
             for line in data:
                 # 대상 시퀸스 valid 검증
                 line = seq_validator(line)
@@ -69,6 +71,8 @@ def do(src_file_name, dest_file_name, cnt):
                 if barcode.lower() in line.lower():
                     # 존재한다면 대상 시퀸스는 이제 필요없으므로 추후 메모리에서 제거하기 위해 따로 보관한다.
                     used_data.append(line)
+                processing_cnt+=1
+                print(f"{processing_cnt}-th line is processed")
 
             # 결과가 저장될 파일명 지정
             file_name = os.path.join(result_folder_name, '{}.txt'.format(file_name))
@@ -130,3 +134,4 @@ if __name__ == "__main__":
 
     print(u'Well done. Press any key')
     input()
+

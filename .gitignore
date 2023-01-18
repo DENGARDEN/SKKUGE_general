@@ -151,3 +151,8 @@ HKK_220314__26_1.fastq.gz
 HKK_220314__26_2.fastq.gz
 .DS_Store
 .idea/workspace.xml
+
+*.fastq.gz
+*.fastq
+*.xlsx
+*.csv

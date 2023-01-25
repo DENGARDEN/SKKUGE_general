@@ -1,7 +1,7 @@
 import pandas as pd
 
-INPUT_CSV = "PBS RTT conversion.csv"
-TARGET_COLUMN = "PBS RTT"
+INPUT_CSV = "PBS RTT conversion_T790M.CSV"
+TARGET_COLUMN = "RTT PBS"
 
 def verify(sequence):
         """This code verifies if a sequence is a DNA or RNA"""
@@ -14,9 +14,9 @@ def verify(sequence):
         # Use a union method to ensure the
         # sequence is verified if does not
         # contain all the bases
-        if seq == {"A", "T", "C", "G"}.union(seq):
+        if seq == {"A", "T", "C", "G"}.intersection(seq):
             return "DNA"
-        elif seq == {"A", "U", "C", "G"}.union(seq):
+        elif seq == {"A", "U", "C", "G"}.intersection(seq):
             return "RNA"
         else:
             return "Invalid sequence"

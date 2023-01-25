@@ -1,6 +1,7 @@
 import pandas as pd
 
-INPUT_CSV = "./pegRNA target gene final.csv"
+INPUT_CSV = "PBS RTT conversion.csv"
+TARGET_COLUMN = "PBS RTT"
 
 def verify(sequence):
         """This code verifies if a sequence is a DNA or RNA"""
@@ -54,8 +55,8 @@ def rev_comp_if(seq):
 
 if __name__ == "__main__":
     df = pd.read_csv(INPUT_CSV)
-    df["REV_COMP"] = df["sPBS_RTSeq"].apply(rev_comp_if)
-    df.to_csv("pegRNA target gene final+RTT_PBS.csv", index=False)
+    df["REV_COMP"] = df[TARGET_COLUMN].apply(rev_comp_if)
+    df.to_csv(f"{INPUT_CSV}_REVCOMP.csv", index=False)
     
 
     
